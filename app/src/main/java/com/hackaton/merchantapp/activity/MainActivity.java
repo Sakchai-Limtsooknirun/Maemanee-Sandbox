@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button scan_button;
 
-    private Intent resultIntent ;
+    private Intent resultIntent;
 
-    private String resultData ;
+    private String resultData;
 
     @Override
 
@@ -72,17 +72,13 @@ public class MainActivity extends AppCompatActivity {
         create_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,CreatePromotion.class);
+                Intent intent = new Intent(MainActivity.this, CreatePromotion.class);
                 startActivity(intent);
 
             }
         });
 
     }
-
-
-
-
 
 
     @Override
@@ -94,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (result.getContents() == null) {
 
-                Toast.makeText(this, "You cancell scanning", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You cancel scanning", Toast.LENGTH_LONG).show();
 
             } else {
 
@@ -102,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 resultData = result.getContents();
 
                 loadData();
-                Log.i("OKKKKKKKKKKKKKK","OKKKKKKKKKKKKKKOKKKKKKKK");
+                Log.i("OKKKKKKKKKKKKKK", "OKKKKKKKKKKKKKKOKKKKKKKK");
 
 
             }
@@ -115,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     private void loadData() {
 
 
@@ -123,20 +120,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "OK",Toast.LENGTH_LONG).show();
                     resultIntent = new Intent(MainActivity.this, ResultActivity.class);
                     resultIntent.putExtra("RESULT_VALUE", resultData);
                     startActivity(resultIntent);
 
-
-                }else {
-                    Toast.makeText(MainActivity.this, "Invalid Coupon Code or Code NotFound",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Invalid Coupon Code", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Has some error",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Has some error", Toast.LENGTH_LONG).show();
             }
         });
     }
